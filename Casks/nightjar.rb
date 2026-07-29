@@ -2,8 +2,8 @@ cask "nightjar" do
   version "0.1.21"
   sha256 "ea65f6fa994d8514c2e496be16dff7d837c0b96b562cb5dbde4525838bb59bc5"
 
-  url "https://github.com/piyushpradhan/nightjar/releases/download/v#{version}/Nightjar_#{version}_arm64.dmg",
-      verified: "github.com/piyushpradhan/nightjar/"
+  url "https://github.com/piyushpradhan/homebrew-nightjar/releases/download/v#{version}/Nightjar_#{version}_arm64.dmg",
+      verified: "github.com/piyushpradhan/homebrew-nightjar/"
   name "Nightjar"
   desc "Local, observable cron and scheduled-job manager"
   homepage "https://nightjar.pro/"
