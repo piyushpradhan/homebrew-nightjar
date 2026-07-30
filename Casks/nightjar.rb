@@ -1,15 +1,15 @@
 cask "nightjar" do
-  version "0.1.21"
-  sha256 "ea65f6fa994d8514c2e496be16dff7d837c0b96b562cb5dbde4525838bb59bc5"
+  version "0.1.22"
+  sha256 "d41b30975882da788fd2a40ac9139921024d1d037289c6df38dcf62a0a07f45b"
 
   url "https://github.com/piyushpradhan/homebrew-nightjar/releases/download/v#{version}/Nightjar_#{version}_arm64.dmg",
       verified: "github.com/piyushpradhan/homebrew-nightjar/"
   name "Nightjar"
-  desc "Local, observable cron and scheduled-job manager"
-  homepage "https://nightjar.pro/"
+  desc "Local, observable cron/scheduled-job manager — cron with eyes"
+  homepage "https://nightjar.pro"
 
   livecheck do
-    url "https://github.com/piyushpradhan/nightjar/releases/latest"
+    url "https://github.com/piyushpradhan/homebrew-nightjar/releases/latest"
     strategy :github_latest
   end
 
@@ -19,6 +19,8 @@ cask "nightjar" do
 
   app "Nightjar.app"
 
+  # No Apple Developer ID. Strip the download quarantine, then re-apply
+  # a sealed ad-hoc signature so Gatekeeper accepts the app.
   postflight do
     system_command "/usr/bin/xattr",
                    args: ["-cr", "#{appdir}/Nightjar.app"]
