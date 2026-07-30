@@ -1,6 +1,6 @@
 cask "nightjar" do
-  version "0.1.23"
-  sha256 "4dad0a1711b1e6ccf48b8fe524b43ba7259c08ede6df27a8c2ccf1a776dfe533"
+  version "0.1.24"
+  sha256 "184d074aa9866e8e9ba129f834edf9bfb9cf2b2f4b797a607807b3bede6fcd39"
 
   url "https://github.com/piyushpradhan/homebrew-nightjar/releases/download/v#{version}/Nightjar_#{version}_arm64.dmg",
       verified: "github.com/piyushpradhan/homebrew-nightjar/"
