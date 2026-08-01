@@ -1,6 +1,6 @@
 cask "nightjar" do
-  version "0.1.27"
-  sha256 "b51c1232b246156896d923147f1be39cf1e4e2d6572a895703768c4ad5af0402"
+  version "0.1.28"
+  sha256 "5d76764ed78b539b53c5d30db346f5a8789583dea4c4fd77348fac592b7e4298"
 
   url "https://github.com/piyushpradhan/homebrew-nightjar/releases/download/v#{version}/Nightjar_#{version}_arm64.dmg",
       verified: "github.com/piyushpradhan/homebrew-nightjar/"
@@ -13,19 +13,23 @@ cask "nightjar" do
     strategy :github_latest
   end
 
-  auto_updates false
+  auto_updates true
   depends_on macos: :big_sur
   depends_on arch: :arm64
 
   app "Nightjar.app"
 
-  # No Apple Developer ID. Strip the download quarantine, then re-apply
-  # a sealed ad-hoc signature so Gatekeeper accepts the app.
+  # Keep Squirrel.Mac's designated requirement stable across builds,
+  # while retaining Yank's no-Developer-ID distribution model.
   postflight do
     system_command "/usr/bin/xattr",
                    args: ["-cr", "#{appdir}/Nightjar.app"]
     system_command "/usr/bin/codesign",
                    args: ["--force", "--deep", "--sign", "-", "#{appdir}/Nightjar.app"]
+    system_command "/usr/bin/codesign",
+                   args: ["--force", "--sign", "-", "--requirements",
+                          '=designated => identifier "com.piyushpradhan.nightjar"',
+                          "#{appdir}/Nightjar.app"]
   end
 
   zap trash: [
